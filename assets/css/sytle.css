@@ -1,0 +1,286 @@
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 62.5%;
+}
+* {
+  font-family: 'Alegreya Sans', Arial, Helvetica, sans-serif; /* Main font with fallbacks */
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  width: 100%;
+  display: flex;
+    flex-direction: column; /* Stack children vertically */
+    font-family: 'Alegreya Sans', Arial, Helvetica, sans-serif; /* Main font with fallbacks */
+    min-height: 100vh;
+    overflow-y: hidden;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: lightgray!important;
+}
+.heading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 55px;
+}
+
+.horizantal_line/*Here this is used to select the second class in horizantal we use'.'*/ {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.473);
+}
+
+/*For header*/
+.web-image {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  height: 55px;
+  width: 100%;
+}
+.web-image img {
+  box-sizing: border-box;
+  height: 55px;
+}
+.web-image img {
+  margin-left: 1.5vw;
+  width: 200px;
+}
+.web-image .hamburger {
+  margin-left: auto;
+  width: 40px;
+  margin-right: 1vw;
+  height: 45px;
+}
+/*For hamburger menu and navigation*/
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 3px;
+  border: 1px solid rgb(55, 123, 150);
+  border-radius: 5px;
+  width: 25px; /* Width of the hamburger icon */
+  height: 15px; /* Height of the hamburger icon */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.line {
+  height: 4px; /* Height of each line */
+  width: 100%; /* Full width */
+  background-color: rgb(55, 123, 150);
+  border-radius: 5px; /* Color of the lines */
+  transition: all 0.3s ease; /* Smooth transition for animations */
+}
+
+.hamburger.active .line {
+  background-color: green; /* Change color on hover */
+}
+
+/* Navigation menu styles */
+.nav-menu {
+  width: 220px;
+  height: 160px;
+  line-height: 28px;
+  box-sizing: border-box;
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 59px; /* Position below the header */
+  right: 5px; /* Align to the right */
+  background-color: #fff; /* Background color for the menu */
+  box-shadow: 0 2px 10px black;
+  z-index: 999; /* Ensure it appears above other content */
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners */
+  /*For img postioning*/
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+}
+.nav-menu.active {
+  display: grid; /* Show the menu when active */
+}
+.nav-menu .nav-item {
+  display: flex; /* Each link takes a full line */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1px;
+  font-size: medium;
+  text-decoration: none;
+  color: #333; /* Text color */
+}
+.nav-menu .nav-item:hover {
+  background-color: none;
+  cursor: pointer; /* Hover effect */
+}
+.nav-menu p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  line-height: 0;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  
+}
+.calculator_defination h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  height: 5vh;
+}
+.subjectcount {
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.subject_definition {
+  text-align: center;
+  height: 100%;
+}
+label {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#buttonContainer{
+  width: 85vw;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/*Results calcualtion part/ How results calculated*/
+.results {
+  height: 87.4vh; /* Ensure this is set to a reasonable height */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: flex-start; /* Align items to the top */
+  text-align: center; /* Center text */
+  border-radius: 8px; /* Rounded corners */
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.calculation-content {
+  max-width: 600px; /* Limit the width of the content */
+  box-sizing: border-box;
+  margin-top: 20px; /* Add margin for spacing */
+}
+
+.formula-image {
+  width: 100%; /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 20px; /* Space below the image */
+  border-radius: 5px; /* Rounded corners for the image */
+}
+
+ul, ol {
+  list-style-position: inside; /* Position bullets/numbering inside */
+  padding: 0; /* Remove padding */
+  margin: 10px 0; /* Add margin for spacing */
+}
+
+ul li, ol li {
+  margin: 5px 0; /* Space between list items */
+}
+
+#backButton {
+  padding: 10px 20px; /* Add padding to the button */
+  font-size: 1.8rem; /* Increase font size */
+  cursor: pointer; /* Change cursor to pointer */
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+#backButton:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+#results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%; /* Ensure it takes full height */
+}
+@media screen and (max-width: 780px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
+  .heading {
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    box-sizing: border-box;
+    align-items: center;
+  }
+  /*For new navigation*/
+  .web-image {
+    display: flex;
+    box-sizing: border-box;
+    height: 8vh;
+    width: 100%;
+  }
+  .horizantal_line/*Here this is used to select the second class in horizantal we use'.'*/ {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.473);
+  }
+  .web-image img {
+    box-sizing: border-box;
+    height: 8vh;
+    width: 200px;
+    margin-left: 2vw;
+    padding: 0;
+  }
+  .web-image .hamburger {
+    margin-left: auto;
+    width: 26px;
+    margin-right: 2vw;
+    height: 5vh;
+  }
+  .hamburger {
+    padding: 0 5px;
+    border-radius: 10px;
+    border: 1px solid rgb(55, 123, 150);
+  }
+  .calculator_defination h1{
+    font-size: 1.5rem;
+  }
+  #numSubjects {
+    width: 1.5rem;
+  }
+  .subjectcount label {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  #buttonContainer{
+    width: 300px;
+  }
+}

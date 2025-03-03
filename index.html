@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SGPA CALCULATOR</title>
+    <link rel="stylesheet" href="assets/css/sytle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+    <style>
+    
+      .html{
+        font-size: 62.5%;
+        overflow-y: hidden;
+      }
+      main{
+        flex: 1;
+      }
+      #content{
+        width: 100%;
+        height: 87.4vh;
+      }
+      .calculator{
+        display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          margin-top: 1%;
+          height: 99%;
+
+      }
+      .calculator_defination {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          
+          width: 97vw;
+          height: 85.5vh;
+        }
+        #subjectContainer{
+        display: grid;
+        height: 75vh;
+        width: 95vw;
+        grid-template-columns: 1fr ;
+        grid-template-rows: repeat(8, 75px);
+        overflow-y: auto;
+        align-items: center;
+        justify-items: center;
+        }
+        .subject{
+          display: grid;
+          grid-template-columns: repeat(4,1fr) ;
+          gap: 5vw;
+        }
+        .subject label{
+          font-size: 1.5rem;
+        }
+        .subject label.small{
+          font-size: 1.45rem; /*This is created to encounter with the issue of font-size when the subject count is more than 9 we have decrease it's to main the size of the elements same*/
+        }
+        /*For credits section*/
+        .subject-selection{
+          width: 100%;
+          height: 100%;
+        }
+
+
+        /*FOR CREDITS STYLING*/
+        .credit-container {
+          display: flex;
+          align-items: center;
+          width: 200px; /* Adjust width as needed */
+          border: 1px solid black;
+          border-radius: 5px;
+          overflow: hidden;
+        }
+
+        .credit-value {
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            border: none; /* Remove border */
+            outline: none; /* Remove outline */
+            padding: 5px 0;
+            box-sizing: border-box;
+        }
+
+       .credit-button ,#addSubjectButton ,#resultsDisplay {
+            width: 30px; /* Width of the button */
+            height: 100%; /* Height of the button */
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            color: black;
+            border: none; /* Remove border */
+            outline: none; /* Remove outline */
+            border-radius: 0;
+        }
+        #addSubjectButton{
+          width: 150px; /* Width of the button */
+            height:40px; /* Height of the button */
+            font-size: 1.5rem;
+            cursor: pointer;
+            background-color: #f0f0f0; /* Remove border */
+            border: 1px dotted black;
+            border-radius: 5px;
+            font-weight: 550;
+        }
+        #removebutton{
+          width: 100%;
+          color:black ;
+          font-size: 14px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            border: solid 0.5px black;
+        }
+        #resultsDisplay{
+          width: 180px; /* Width of the button */
+            height:40px; /* Height of the button */
+            font-size: 1.4rem;
+            cursor: pointer;
+            background-color: #f0f0f0; /* Remove border */
+            border: 1px dotted black;
+            border-radius: 5px;
+            font-weight: 600;
+            padding: 0;
+        }       
+        /* This is to remove arrow marks */
+        /* For WebKit browsers (Chrome, Safari) */
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none; /* Hides the spinner */
+            margin: 0; /* Removes any margin */
+        }
+        /* Hides the spinner in Firefox */
+        input[type="number"] {
+          -moz-appearance : textfield; /* Removes the spinner */
+        }
+
+        /* For navmenu images */
+        .nav-menu img {
+          height: 50px;
+          width: 50px;
+          margin: 0;
+          padding: 0;
+          display: inline-block;
+        } 
+
+        /*Footer section*/
+
+        .footer-content{
+          display: flex;
+          justify-content: center; /* Space between icons and text */
+          align-items: center; /* Center content vertically */
+          flex-direction: row-reverse;
+          box-sizing: border-box;
+          height: 5vh;
+          width: 100%;
+          background-color:  #f0f0f0;
+          border-top: 1px solid black;
+          gap: 50px;
+        }
+        .footer-icons {
+          display: flex;
+          gap: 10px; /* Space between icons */
+          align-items: center; /* Center icons vertically */
+        }
+        .footer-icons a {
+            text-decoration: none;
+            color: #007bff; /* Icon color */
+            display: flex;
+            flex-direction: column; /* Stack icon and text */
+            align-items: center; /* Center text below icon */
+            font-size: 1.5rem; /* Adjust icon size */
+            margin: 0; /* Remove margin */
+            padding: 0; /* Remove padding */
+        }
+        .footer-icons a:hover {
+            color: #0056b3; /* Darker color on hover */
+        }
+        footer p {
+          margin: 0; /* Remove margin for better fit */
+          padding: 0; /* Remove padding for better fit */
+          text-align: center; /* Center the text */
+          font-size: 1.6rem; /* Adjust font size */
+          color: #333; /* Dark gray color for better readability */
+          transition: color 0.3s; /* Smooth transition for hover effect */
+      }
+      
+      footer p:hover {
+          color: #007bff; /* Change color on hover for interactivity */
+      }
+        .footer-content .footer-icons a span {
+          font-size: 12px; /* Adjust this value as needed */
+          margin: 0;
+          padding: 0;
+      }
+      .hidden{
+        display: none !important;
+      }
+      @media screen and (max-width: 780px) {
+          main{
+            overflow-x: hidden;
+          }
+          .subject{
+            display: grid;
+            grid-template-rows: repeat(4,1fr) ;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+          }
+          .credit-container{
+            width: 300px;
+          }
+          #addSubjectButton{
+          width: 120px;
+          font-size: 13px;
+          }
+          #resultsDisplay{
+            width: 150px;
+            font-size: 1.2rem;
+          }
+          /*footer section*/
+          footer p{
+            font-size: small;
+          }
+          .footer-icons a:nth-of-type(3) span {
+            font-size: 10px; /* Adjust this value as needed */
+            margin: 0;
+            padding: 0;
+            margin-right: 2px;
+            white-space: nowrap;
+        }
+        }
+    </style>
+
+
+    <style>
+/*Results calcualtion part/ How results calculated*/
+/* Results Calculation Part */
+.results {
+  height: 87.4vh; /* Set a reasonable height for the results section */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  display: flex;
+  flex-direction: column;
+  align-items: center; justify-content: flex-start; /* Align items to the top */
+  text-align: center; /* Center text */
+  border-radius: 8px; /* Rounded corners */
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.calculation-content {
+  max-width: 800px; /* Limit the width of the content */
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.formula-image {
+  width: auto; /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0;
+  border-radius: 5px; /* Rounded corners for the image */
+}
+
+.mainp {
+  margin: 0;
+  margin: 10px 0;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+/* Flex Container for Left and Right Columns */
+.flex-container {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column;
+  justify-content: space-between; /* Space between columns */
+  width: 100%; /* Ensure it takes full width */
+}
+
+.left-column, .right-column {
+  width: 48%; /* Each column takes up 48% of the width */
+  box-sizing: border-box; /* Include padding and border in width */
+}
+
+.left-column,.right-column {
+  font-size: 20px; /* Font size for left column */
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.left-column .secondpart{
+  font-size: 16px;
+}
+.right-column {
+  font-size: 16px; /* Font size for right column */
+}
+
+/* List Styles */
+.left-column ul, .right-column ul {
+  list-style-position: inside; /* Position bullets/numbering inside */
+  padding: 0; /* Remove padding */
+  margin: 10px 0; /* Add margin for spacing */
+}
+
+.left-column p, .right-column p {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove padding */
+}
+
+/* Calculation Steps */
+.calculation-steps {
+  margin-top: 20px; /* Space above calculation steps */
+}
+
+.step-block {
+  margin-top: 0px; /* Space between steps */
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  height: 100%;
+}
+.step-block .first ol{
+  margin-top: 0;
+}
+.second {
+  margin-top: 40px;
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+  height: 100%; /* Ensure the container has a defined height */
+}
+/* Button Styles */
+#backButton {
+  padding: 10px 20px; /* Add padding to the button */
+  font-size: 1.8rem; /* Increase font size */
+  cursor: pointer; /* Change cursor to pointer */
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+#backButton:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+    </style>
+
+
+    <style>
+    /* Credits Section Styles */
+    h1{
+      text-align: center;
+    }
+.credits {
+  display: flex;
+  max-width: 100%; /* Set the width of the credits section */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px; /* Add padding inside the container */
+  box-sizing: border-box; /* Include padding in width */
+  height: 87.4vh;
+overflow-y: auto;
+overflow-x: hidden;
+justify-content: center;
+}
+.creditsmain{
+  max-width: 800px;
+}
+.batch-container {
+  border: 1px solid black; /* Solid border */
+  border-radius: 10px;
+  min-height: 200px; /* Set height */
+  padding: 10px; /* Padding inside the container */
+  width: 70%;
+  margin: 20px 0 20px 15%;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  overflow-y: auto;
+}
+
+.sem-container {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between;
+  flex-direction: column; /* Space between semester links */
+  margin-top: 10px; /* Space above the semester container */
+}
+.sem-container{
+  font-size: 1.5rem;
+}
+.sem {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack links vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+.common-credits {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0; /* Space above common credits section */
+}
+
+.common-credits h2 {
+  margin-bottom: 10px; /* Space below the heading */
+  font-size: 2.5rem;
+}
+
+.common-credits ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.common-credits li {
+  margin: 5px 0; /* Space between list items */
+  font-size: 2rem;
+}
+
+/* Button Styles */
+.backbuttoncredits #backButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px; /* Add padding to the button */
+  font-size: 1.rem; /* Increase font size */
+  cursor: pointer; /* Change cursor to pointer */
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+.backbuttoncredits,.backbuttongrades{
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+#backButton:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+    </style>
+
+<style>
+  /* Grades Chart Section Styles */
+  h1{
+    text-align: center;
+    font-size: 2rem;
+  }
+.grades {
+  max-width: 800px; /* Set the width of the grades section */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px; /* Add padding inside the container */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.grades_chart {
+  margin-top: 2vh;
+  display: grid;
+  width: 100%; /* Use full width of the container */
+  height: 50vh; /* Adjust height automatically */
+  grid-template-columns: 1fr 4fr 2fr 2fr; /* Define grid columns */
+  grid-template-rows: repeat(10, auto); /* Adjust rows automatically */
+  text-align: center;
+  border: 1px solid black; /* Solid border */
+  box-sizing: border-box; /* Include border in width */
+  font-size: medium;
+}
+
+.grades_chart div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* Center content horizontally */
+  border: 1px solid rgb(0, 0, 0); /* Border for each cell */
+  color: black;
+}
+
+.grades_definition {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  gap: 1vh; /* Space between items */
+}
+
+.grades_definition p {
+  font-size: medium;
+  width: 100%; /* Use full width */
+  line-height: 2rem;
+  margin: 10px 0;
+}
+
+/* Button Styles */
+.backbuttongrades #backButton{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px; /* Add padding to the button */
+  font-size: 1.rem; /* Increase font size */
+  cursor: pointer; /* Change cursor to pointer */
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+.backbuttongrades{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+</style>
+
+<style>
+  /*This is for about section part*/
+  .about {
+    max-width: 800px; /* Set the maximum width of the about section */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Add padding inside the container */
+    box-sizing: border-box; /* Include padding in width */
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 87vh;
+    
+}
+
+.about-content {
+    margin: 20px 0; /* Space above the content */
+    text-align: left; /* Align text to the left */
+    overflow-y: auto;
+}
+
+.about-content p {
+    margin-bottom: 10px; /* Space between paragraphs */
+    line-height: 1.5; /* Improve readability */
+    font-size: 1.5rem;
+}
+
+/* Button Styles */
+#backToCalculatorButton {
+    padding: 10px 20px; /* Add padding to the button */
+    font-size: 1.2rem; /* Increase font size */
+    cursor: pointer; /* Change cursor to pointer */
+    background-color: #007bff; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    margin-top: 15px;
+    transition: background-color 0.3s;
+     /* Smooth transition for hover effect */
+}
+
+#backToCalculatorButton:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+.backToCalculatorButton-contanier{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+  </head>
+  <body>
+    <header>
+      <div class="heading">
+        <div class="web-image">
+          <a href="javascript:void(0);" onclick="showSections('cgpacalculator')">
+        <img src="assets/images/website logo.png" alt="website logo" ></a>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+      </div> <!-- Hamburger icon -->
+      <div class="nav-menu" id="navMenu">
+        <div class="nav-item" onclick="showSections('resultscalculationdemo')">
+          <img src="assets/images/Grade_Calcultion icon.png" alt="Grades Calculation">
+          <p>RESULT CALCULATION</p>
+      </div>
+      <div class="nav-item" onclick="showSections('creditslink')">
+          <img src="assets/images/Results_Link icon.png" alt="Link to results">
+          <p>RESULTS SECTION</p>
+      </div>
+      <div class="nav-item" onclick="showSections('gradeschart')">
+          <img src="/assets/images/Grades_chart_icon.png" alt="Gradeschart icon">
+          <p>GRADES CHART</p>
+      </div>
+      <div class="nav-item" onclick="showSections('aboutus')">
+          <img src="assets/images/About_us_icon.png" alt="About us icon">
+          <p>ABOUT WEBSITE</p>
+      </div>
+      </div>
+      </div>
+      
+    </header>
+    <div class="horizantal_line"></div>
+    <main id="content">
+      <div id="cgpacalculator" class="calculator">
+          <div class="calculator_defination">
+            <h1>ENTER YOUR MARKS</h1>
+            <div class="subject_definition">
+              <div class="subjectcount">
+              <label for="numSubjects">ENTER THE NUMBER OF SUBJECTS:</label>
+              <input type="number" id="numSubjects" min="1" max="15"value="7" />
+              <button id="setSubjectsButton" onclick="setNumberOfSubjects()">
+                       SUBMIT
+                </button>
+              </div>
+              <div id="subjectContainer">
+                <!-- Subjects will be added here dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="results" class="results hidden">
+          <h1 style="font-size: 3rem; margin-bottom: 10px; text-decoration: underline;">RESULTS</h1>
+          <p id="resultDisplay" style="font-size: 3rem; margin: 10px 0 20px 0;">Your calculated results will be displayed here.</p>
+          <button id="backButton">Back to Calculator</button>
+      </div>
+      <div id="resultscalculationdemo" class="results">
+        <h1 style="text-decoration: underline;">How Grades Are Calculated?</h1>
+        <div class="calculation-content">
+            <img src="assets/images/formula.png" alt="Formula Image" class="formula-image"><hr class="line">
+            <p class="mainp">This is how your grades are calculated:</p>
+            <div class="flex-container">
+                <div class="left-column">
+                    <div><p>This is how your results are calculated for example we have 7 subjects:</p>
+                    <ul>
+                        <li>Subject 1: A</li>
+                        <li>Subject 2: B+</li>
+                        <li>Subject 3: O</li>
+                        <li>Subject 4: A</li>
+                        <li>Subject 5: B</li>
+                        <li>Subject 6: C</li>
+                        <li>Subject 7: A+</li>
+                    </ul></div>
+                    <div class="secondpart"><p>To calculate the SGPA, we assign the following points based on the grading system:</p>
+                      <ul>
+                        <li>O = 10</li>
+                        <li>A+ = 9</li>
+                        <li>A = 8</li>
+                        <li>B+ = 7</li>
+                        <li>B = 6</li>
+                        <li>C = 5</li>
+                        <li>D = 4</li>
+                        <li>F = 0</li>
+                        <li>AB = 0</li>
+                    </ul>
+                  </div> 
+                </div><hr class="line">
+                <h1>Calculation Steps:</h1>
+                <div class="right-column">
+                  <div class="step-block first">
+                    <ol>
+                        <li style="list-style-type: none;">
+                            <b style="text-decoration: underline; font-family:Arial, Helvetica, sans-serif;">Step 1 :</b> 
+                            **Convert Grades to Points**: Each grade is converted to its corresponding point value.
+                        </li>
+                        <li style="list-style-type: none;">
+                            <b style="text-decoration: underline; font-family:Arial, Helvetica, sans-serif;">Step 2 :</b> 
+                            **Calculate Total Points**: Add the points for all subjects (each subject is multiplied by 3 for credits):
+                            <ul>
+                                <li>Subject 1: A = 8 points (3 credits) → 8 * 3 = 24 points</li>
+                                <li>Subject 2: B+ = 7 points (3 credits) → 7 * 3 = 21 points</li>
+                                <li>Subject 3: O = 10 points (3 credits) → 10 * 3 = 30 points</li>
+                                <li>Subject 4: A = 8 points (3 credits) → 8 * 3 = 24 points</li>
+                                <li>Subject 5: B = 6 points (3 credits) → 6 * 3 = 18 points</li>
+                                <li>Subject 6: C = 5 points (3 credits) → 5 * 3 = 15 points</li>
+                                <li>Subject 7: A+ = 9 points (3 credits) → 9 * 3 = 27 points</li>
+                            </ul>
+                            Total Points = 24 + 21 + 30 + 24 + 18 + 15 + 27 = 169 points
+                        </li>
+                    </ol>
+                </div>
+                <div class="step-block second">
+                  <div>
+                      <p>**Calculate Total Credits**:</p>
+                      <p>Assume each subject has equal credits (e.g., 3 credits each):</p>
+                      <ul>
+                          <li>Total Credits = 3 (for Subject 1) + 3 (for Subject 2) + 3 (for Subject 3) + 3 (for Subject 4) + 3 (for Subject 5) + 3 (for Subject 6) + 3 (for Subject 7) = 21 credits</li>
+                      </ul>
+                      
+                      <div>
+                          <p style="font-size: 16px; margin: 0;">**Calculate SGPA**: Divide the total points by the total credits:</p>
+                          <p style="font-size: 16px; margin: 0; margin-top: 5px;">SGPA = Total Points / Total Credits = 169 / 21 ≈ 8.05</p>
+                      </div>
+                  </div>
+              </div>
+                </div>
+                
+            </div><hr class="line">
+            <p style="font-size: 20px;">Thus, the calculated SGPA for the student is  8.05.</p>
+        </div>
+        <button id="backButton" onclick="showSections('cgpacalculator')" style="margin-bottom: 5px;">Back to Calculator</button>
+    </div>
+    <div id="creditslink" class="credits hidden">
+      <div class="creditsmain"><h1>LINKS FOR RESULTS</h1>
+      <hr class="line">
+      <div class="batch-container">
+        <h1 style="margin: 0;">RESULTS LINKS FOR BATCH 2022 TO 2025</h1>
+        <div class="sem-container">
+          <div class="sem">
+            <h3 style="margin: 5PX;">Coming soon...</h3></div>
+            <!-- <div class="sem">
+                <h3 style="margin: 5PX;">Semester 1</h3>
+                <a href="https://aknu.edu.in/Result/Results/B.Sc%20I%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20January%20-%202024%20.php"target="_blank">View Results for B.Sc</a>
+                <a href="https://aknu.edu.in/Result/Results/BA,%20BBA,%20BCA,I%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20January-2024%20.php"target="_blank">View Results for BBA BCA B.COM</a>
+            </div>
+            <div class="sem">
+                <h3 style="margin: 5PX;">Semester 2</h3>
+                <a href="https://aknu.edu.in/Result/Results/All%20UG%20Courses-II%20Sem%20(2022%20AB%20&%202023%20AB)%20results%20May%20-%202024.php"target="_blank">View Results</a>
+            </div>
+            <div class="sem">
+                <h3 style="margin: 5PX;">Semester 3</h3>
+                <a href="https://aknu.edu.in/Result/Results/B.Sc%20III%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20July%20-%202024%20.php"target="_blank">View Results for B.Sc</a>
+                <a href="https://aknu.edu.in/Result/Results/BA,%20BBA,%20BCA,III%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20July-2024%20.php"target="_blank">View Results for BBA BCA B.COM</a>
+            </div>
+            <div class="sem">
+                <h3 style="margin: 5PX;">Semester 4</h3>
+                <a href="https://aknu.edu.in/Result/Results/B.Sc%20IV%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20November%20-%202024%20.php"target="_blank">View Results for B.Sc</a>
+                <a href="https://aknu.edu.in/Result/Results/BA,%20BBA,%20BCA,IV%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20November-2024%20.php"target="_blank">View Results for BBA BCA B.COM</a>
+            </div>
+            <div class="sem">
+                <h3 style="margin: 5PX;">Semester 5</h3>
+                <a href="https://aknu.edu.in/Result/Results/B.Sc%20V%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20March%20-%202025%20.php"target="_blank">View Results for B.Sc</a>
+                <a href="https://aknu.edu.in/Result/Results/BA,%20BBA,%20BCA,V%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20March-2025%20.php"target="_blank">View Results for BBA BCA B.COM</a>
+            </div> -->
+        </div>
+    </div>
+      <hr class="line">
+      <div class="batch-container">
+          <h1>RESULTS LINKS FOR BATCH 2023 TO 2026</h1>
+          <div class="sem-container">
+              <div class="sem">
+                  <h3>Semester 1</h3>
+                  <a href="https://aknu.edu.in/Result/Results/B.Sc%20I%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20January%20-%202024%20.php" target="_blank">View Results for B.sc</a>
+                  <a href="https://aknu.edu.in/Result/Results/BA,%20BBA,%20BCA,I%20Semester%20(Regular%20&%20Backlog)%20Results%20-%20January-2024%20.php"target="_blank">View Results for BBA BCA B.COM</a>
+                  
+              </div>
+              <div class="sem">
+                  <h3>Semester 2</h3>
+                  <a href="https://aknu.edu.in/Result/Results/All%20UG%20Courses-II%20Sem%20(2022%20AB%20&%202023%20AB)%20results%20May%20-%202024.php"target="_blank">View Results</a>
+              </div>
+          </div>
+      </div>
+      <hr class="line">
+      <div class="batch-container">
+          <h1>RESULTS LINKS FOR BATCH 2024 TO 2027</h1>
+          <div class="sem-container">
+              <div class="sem">
+                <h3 style="margin: 5PX;">Coming soon...</h3>
+                </div>
+          </div>
+      </div>
+      <hr class="line">
+      <div class="common-credits">
+          <h2>Credits for Common Subjects</h2>
+          <ul>
+              <li>Eng/Tel      - <b>3 Credits</b></li>
+              <li>Course1(or)2 - <b>4 Credits</b></li>
+              <li>Major/Minor  - <b>3 Credits</b></li>
+              <li>skills       - <b>2 Credits</b></li>
+              <li>practicals   - <b>1 Credit</b></li>
+              <li>C.S project  - <b>4 Credits</b></li>
+
+          </ul>
+      </div>
+      <div class="backbuttoncredits">
+      <button id="backButton"onclick="showSections('cgpacalculator')" style="margin-bottom: 5px;">Back to Calculator</button>
+    </div>
+  </div>
+    </div>
+
+    <div id="gradeschart" class="grades hidden">
+      <h1>Grades Chart</h1>
+      <hr class="line">
+      <div class="grades_definition">
+          <div class="grades_chart">
+              <div class="element-heading"><b>S.No</b></div>
+              <div class="element-heading"><b>GRADE SCALE</b></div>
+              <div class="element-heading"><b>GRADE DESCRIPTOR</b></div>
+              <div class="element-heading"><b>GRADE POINTS</b></div>
+              <div class="element-1">1</div>
+              <div class="element-2">O</div>
+              <div class="element-3">OUTSTANDING</div>
+              <div class="element-4">10.0</div>
+              <div class="element-5">2</div>
+              <div class="element-6">A+</div>
+              <div class="element-7">EXCELLENT</div>
+              <div class="element-8">9.0</div>
+              <div class="element-9">3</div>
+              <div class="element-10">A</div>
+              <div class="element-11">VERY GOOD</div>
+              <div class="element-12">8.0</div>
+              <div class="element-13">4</div>
+              <div class="element-14">B+</div>
+              <div class="element-15">GOOD</div>
+              <div class="element-16">7.0</div>
+              <div class="element-17">5</div>
+              <div class="element-18">B</div>
+              <div class="element-19">ABOVE AVG</div>
+              <div class="element-20">6.0</div>
+              <div class="element-21">6</div>
+              <div class="element-22">C</div>
+              <div class="element-23">AVERAGE</div>
+              <div class="element-24">5.0</div>
+              <div class="element-25">7</div>
+              <div class="element-26">D</div>
+              <div class="element-27">PASS</div>
+              <div class="element-28">4.0</div>
+              <div class="element-29">8</div>
+              <div class="element-30">F</div>
+              <div class="element-31">FAIL</div>
+              <div class="element-32">0</div>
+              <div class="element-33">9</div>
+              <div class="element-34">AB</div>
+              <div class="element-35">ABSENT</div>
+              <div class="element-36">0.0</div>
+          </div>
+          <p style="text-align: center;">
+              <b style="text-decoration: underline">Note:</b> THIS GRADES ARE TAKEN AS
+              PER THE CBCS STRUCTURE BY UGC 
+          </p>
+      </div>
+      <div class="backbuttongrades">
+      <button id="backButton" onclick="showSections('cgpacalculator')">Back to Calculator</button>
+  </div></div>
+    
+  <div id="aboutus" class="about hidden">
+    <h1>About website</h1>
+    <hr class="line">
+    <div class="about-content">
+      <p>
+          This website was created to help students understand their grades and calculate their SGPA easily. 
+          The idea came to me when I noticed how challenging it was for students to keep track of their academic performance. 
+          I have also encountered issues while calculating SGPA, which led me to decide, "Why don't we create a website for this?" 
+          Although the website is functional, I recognize that it is not my best work yet, and I am committed to putting in more effort to improve it.
+      </p>
+      <p>
+          I would like to extend my heartfelt thanks to my friends who guided and motivated me throughout this journey. 
+          Without their support, this project would not have been possible. Their names are <strong>Sai</strong>, <strong>Vasu</strong>, <strong>Hemanth</strong>, and <strong>Sudhakar</strong>. 
+          They also assisted me in structuring the elements of the website, and their encouragement was invaluable in bringing this project to life.
+      </p>
+      <p>
+          A special thanks to <strong>Keerthi Mam</strong> for helping me understand how to calculate grades. 
+          She explained the process using a sample result, which clarified how it was done and significantly contributed to my understanding.
+      </p>
+      <p>
+          I hope this website serves as a useful tool for students and helps them achieve their academic goals! 
+          I will put in more effort in my upcoming projects and will try to upload results for different subjects, along with their corresponding credits, if possible. Thank you!
+      </p>
+  </div>
+  <hr class="line">
+  <div class="backToCalculatorButton-contanier">
+    <button id="backToCalculatorButton" onclick="showSections('cgpacalculator')">Back to Calculator</button>
+</div></div>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-icons">
+            <a href="mailto:udayreddytetali@gmail.com" target="_blank" title="Email for Suggestions">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
+            <a href="https://www.linkedin.com/in/udayreddytetali" target="_blank" title="LinkedIn Profile">
+                <i class="fab fa-linkedin"></i>
+                <span style="padding-left: 3px;">LinkedIn</span>
+            </a>
+            <a href="https://github.com/udayreddytetali/sgpacalculator.git" target="_blank" title="View Source Code">
+                <i class="fab fa-github"></i>
+                <span >Source Code</span>
+            </a>
+        </div>
+        <p>Suggestions or improvements? Please reach out!</p>
+    </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
+<!-- main lessons i have learnt -->
+<!-- dont include unnecessary font size property which may be getting endup by creating unwanted space space -->
+<!-- flex shrink bring the propety or element which have no space and went back of the another element set flex shrink to 1 -->
