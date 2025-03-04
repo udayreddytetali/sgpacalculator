@@ -5,6 +5,7 @@ html {
 }
 * {
   font-family: 'Alegreya Sans', Arial, Helvetica, sans-serif; /* Main font with fallbacks */
+  box-sizing: border-box;
 }
 body {
   margin: 0;
