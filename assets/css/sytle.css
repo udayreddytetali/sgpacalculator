@@ -230,7 +230,7 @@ ul li, ol li {
 @media screen and (max-width: 780px) {
   body {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
   }
   .heading {
     display: flex;
@@ -260,7 +260,7 @@ ul li, ol li {
   }
   .web-image .hamburger {
     margin-left: auto;
-    width: 26px;
+    width: 40px;
     margin-right: 2vw;
     height: 5vh;
   }
