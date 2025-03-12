@@ -27,7 +27,7 @@ button:hover {
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  height: 55px;
+  height: 8vh;
 }
 
 .horizantal_line/*Here this is used to select the second class in horizantal we use'.'*/ {
@@ -41,12 +41,12 @@ button:hover {
   display: flex;
   box-sizing: border-box;
   align-items: center;
-  height: 55px;
+  height: 8vh;
   width: 100%;
 }
 .web-image img {
   box-sizing: border-box;
-  height: 55px;
+  height: 8vh;
 }
 .web-image img {
   margin-left: 1.5vw;

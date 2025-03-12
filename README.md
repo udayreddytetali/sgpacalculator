@@ -21,3 +21,7 @@ The SGPA Calculator is a web application designed to help students easily calcul
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/sgpa-calculator.git
+
+## Live view 
+
+#Website-link :- https://udayreddytetali.github.io/sgpacalculator/
